@@ -166,8 +166,8 @@ nav.hidden-nav {
     border-radius: 50%;
     background: #000;
     backdrop-filter: blur(8px);
-    border: 1px solid rgba(255,255,255,0.15);
-    box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
     z-index: 101;
     display: flex;
     flex-direction: column;
@@ -197,9 +197,17 @@ nav.hidden-nav {
     transition: all 0.3s ease;
 }
 
-.fab-nav-btn.open span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
-.fab-nav-btn.open span:nth-child(2) { opacity: 0; }
-.fab-nav-btn.open span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+.fab-nav-btn.open span:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+}
+
+.fab-nav-btn.open span:nth-child(2) {
+    opacity: 0;
+}
+
+.fab-nav-btn.open span:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+}
 
 nav.scrolled {
     padding: 0.7rem 2rem;
@@ -357,7 +365,8 @@ section {
     justify-content: center;
     padding-top: 5rem;
     position: relative;
-    background: #000; /* Match body background */
+    background: #000;
+    /* Match body background */
 }
 
 .hero-photo-bg {
@@ -366,10 +375,14 @@ section {
     left: 50%;
     transform: translate(-50%, -50%);
     width: 100%;
-    max-width: 900px; /* Prevents stretching too wide */
-    height: 90%; /* Prevents vertical clipping */
-    object-fit: contain; /* Ensures the whole image is visible without cropping */
-    object-position: center; /* Centers the focal point */
+    max-width: 900px;
+    /* Prevents stretching too wide */
+    height: 90%;
+    /* Prevents vertical clipping */
+    object-fit: contain;
+    /* Ensures the whole image is visible without cropping */
+    object-position: center;
+    /* Centers the focal point */
     z-index: 1;
 }
 
@@ -377,7 +390,7 @@ section {
     position: absolute;
     inset: 0;
     /* Fades from transparent center into black edges */
-    background: radial-gradient(circle, rgba(0,0,0,0) 20%, #000 80%);
+    background: radial-gradient(circle, rgba(0, 0, 0, 0) 20%, #000 80%);
     z-index: 2;
 }
 
@@ -393,12 +406,15 @@ section {
 .hero-card-v2 {
     position: relative;
     width: 100%;
-    height: 70vh; /* Reduced height to move bottom content up into view */
-    min-height: 480px; /* Reduced min-height perfectly fits most laptops */
+    height: 70vh;
+    /* Reduced height to move bottom content up into view */
+    min-height: 480px;
+    /* Reduced min-height perfectly fits most laptops */
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    padding: 1rem 3rem 2rem 3rem; /* Added slightly more bottom padding */
+    padding: 1rem 3rem 2rem 3rem;
+    /* Added slightly more bottom padding */
 }
 
 .hero-top-v2 {
@@ -472,7 +488,39 @@ section {
     letter-spacing: -0.03em;
     color: #fff;
     margin: 0;
-    text-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    text-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    position: relative;
+    display: inline-block;
+}
+
+.hero-name-huge-v2::after,
+.hero-name-huge-v2::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(to right, #ff0000, #00ffff);
+    left: 0;
+    transform: scaleX(0);
+    transition: transform 0.4s ease-out;
+}
+
+.hero-name-huge-v2::after {
+    bottom: -15px;
+    transform-origin: right;
+}
+
+.hero-name-huge-v2::before {
+    top: -10px;
+    transform-origin: left;
+}
+
+.hero-name-huge-v2:hover::after {
+    transform: scaleX(1);
+}
+
+.hero-name-huge-v2:hover::before {
+    transform: scaleX(0.4);
 }
 
 .hero-info-right-v2 {
@@ -488,7 +536,7 @@ section {
     color: #fff;
     margin-bottom: 0.8rem;
     line-height: 1.4;
-    text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
 }
 
 .hero-tagline-small-v2 {
@@ -497,7 +545,7 @@ section {
     color: rgba(255, 255, 255, 0.8);
     line-height: 1.6;
     margin: 0;
-    text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
 }
 
 .hero-tagline-small-v2 em {
@@ -512,19 +560,23 @@ section {
         height: auto;
         min-height: 80vh;
     }
+
     .hero-top-v2 {
         flex-direction: column;
         gap: 1.5rem;
     }
+
     .hero-bottom-v2 {
         flex-direction: column;
         align-items: flex-start;
         gap: 2rem;
         margin-top: 4rem;
     }
+
     .hero-info-right-v2 {
         text-align: left;
     }
+
     .hero-name-huge-v2 {
         font-size: clamp(3.5rem, 15vw, 6rem);
     }
