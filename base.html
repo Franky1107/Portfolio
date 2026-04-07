@@ -1,0 +1,720 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sourav Mallick — CS Student & Developer</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Syne:wght@400;600;700;800&family=Inter:wght@300;400;500&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- LOADER -->
+    <div id="loader">
+        <div class="loader-content">
+            <span class="loader-name">Sourav<br>Mallick</span>
+            <div class="loader-line-wrap">
+                <div class="loader-line" id="loaderBar"></div>
+            </div>
+            <span class="loader-pct" id="loaderPct">0%</span>
+        </div>
+    </div>
+
+    <!-- NAV -->
+    <nav id="navbar">
+        <a href="#hero" class="nav-logo">SM<span>.dev</span></a>
+        <ul class="nav-links">
+            <li><a href="#about">About</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#education">Education</a></li>
+            <li><a href="#achievements">Achievements</a></li>
+            <li><a href="#blog">Blog</a></li>
+            <li><a href="#contact" class="nav-cta">Contact</a></li>
+        </ul>
+        <button class="hamburger" id="hamburger" aria-label="Menu">
+            <span></span><span></span><span></span>
+        </button>
+    </nav>
+    
+    <!-- CIRCULAR FAB MENU -->
+    <button class="fab-nav-btn" id="fabMenu" aria-label="Menu">
+        <span></span><span></span><span></span>
+    </button>
+
+    <!-- MOBILE MENU -->
+    <div class="mobile-menu" id="mobileMenu">
+        <a href="#about" onclick="closeMobileMenu()">About</a>
+        <a href="#skills" onclick="closeMobileMenu()">Skills</a>
+        <a href="#projects" onclick="closeMobileMenu()">Projects</a>
+        <a href="#education" onclick="closeMobileMenu()">Education</a>
+        <a href="#achievements" onclick="closeMobileMenu()">Achievements</a>
+        <a href="#blog" onclick="closeMobileMenu()">Blog</a>
+        <a href="#contact" onclick="closeMobileMenu()">Contact</a>
+    </div>
+
+    <!-- SCROLL TO TOP -->
+    <div id="scroll-top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</div>
+
+    <!-- HERO -->
+    <section id="hero" class="hero-image-v2">
+        <!-- Center-aligned photo and blending overlay -->
+        <img src="hero-photo.png" alt="Sourav Mallick" class="hero-photo-bg" />
+        <div class="hero-overlay-v2"></div>
+
+        <div class="hero-inner-v2">
+            <div class="hero-card-v2">
+                
+                <!-- TOP HEADER -->
+                <div class="hero-top-v2">
+                    <div class="hero-eyebrow-v2">Hello, World!</div>
+                </div>
+                
+                <!-- BOTTOM TEXT -->
+                <div class="hero-bottom-v2">
+                    <h1 class="hero-name-huge-v2">Sourav<br>Mallick</h1>
+                    <div class="hero-info-right-v2">
+                        <div class="hero-title-small-v2">Computer Science Student /<br>Aspiring Software Developer</div>
+                        <p class="hero-tagline-small-v2">
+                            Exploring <em>AI</em>, building projects, and continuously learning new technologies — one commit at a time.
+                        </p>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about">
+        <div class="container">
+            <div class="section-header reveal">
+                <div class="section-tag">Who I Am</div>
+                <h2 class="section-title">About <span class="dim">Me</span></h2>
+            </div>
+            <div class="about-grid">
+                <div class="about-avatar-wrap reveal">
+                    <div class="about-avatar">
+                        <div class="avatar-initials">SM</div>
+                        <div class="avatar-inner">
+                            <div class="avatar-icon">🧑‍💻</div>
+                            <div class="avatar-name">Sourav Mallick</div>
+                            <div class="avatar-sub">CS Student · Developer</div>
+                        </div>
+                    </div>
+                    <div class="about-corner about-corner-tl"></div>
+                    <div class="about-corner about-corner-br"></div>
+                    <div class="about-stats">
+                        <div class="stat-card">
+                            <span class="stat-num">5+</span>
+                            <span class="stat-label">Projects</span>
+                        </div>
+                        <div class="stat-card">
+                            <span class="stat-num">3+</span>
+                            <span class="stat-label">Languages</span>
+                        </div>
+                        <div class="stat-card">
+                            <span class="stat-num">∞</span>
+                            <span class="stat-label">Curiosity</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-text reveal reveal-delay-2">
+                    <p>
+                        Hi! I'm <strong>Sourav Mallick</strong>, a Computer Science student with a deep passion for
+                        technology and problem-solving. I'm on a continuous learning journey, exploring the fascinating
+                        intersections of <strong>Artificial Intelligence, Machine Learning,</strong> and software
+                        development.
+                    </p>
+                    <p>
+                        What excites me most is building things — whether it's experimenting with <strong>GANs for video
+                            anomaly detection</strong> or crafting clean, functional web applications. I believe in the
+                        power of curiosity-driven learning and embrace every challenge as an opportunity to grow.
+                    </p>
+                    <p>
+                        I'm not an expert yet — and that's the point. I'm a student who shows up consistently, asks the
+                        right questions, and iterates quickly. Every project I build teaches me something new, and
+                        that's what keeps me going.
+                    </p>
+                    <div class="interest-pills">
+                        <span class="pill">🤖 Artificial Intelligence</span>
+                        <span class="pill">📊 Machine Learning</span>
+                        <span class="pill">🎨 Generative AI</span>
+                        <span class="pill">💻 Software Development</span>
+                        <span class="pill">🧮 Algorithms</span>
+                        <span class="pill">🔬 Research</span>
+                        <span class="pill">🌐 Web Dev</span>
+                    </div>
+                    <a href="#" class="resume-btn" onclick="alert('Resume download coming soon!')">
+                        ⬇ Download Resume (PDF)
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SKILLS -->
+    <section id="skills">
+        <div class="container">
+            <div class="section-header reveal">
+                <div class="section-tag">Technical Stack</div>
+                <h2 class="section-title">Skills &amp; <span class="dim">Tools</span></h2>
+            </div>
+            <div class="skills-grid">
+                <div class="skill-card reveal">
+                    <div class="skill-card-icon">🐍</div>
+                    <div class="skill-card-title">Programming Languages</div>
+                    <div class="skill-items">
+                        <div class="skill-item">
+                            <div class="skill-item-top"><span class="skill-item-name">Python</span><span
+                                    class="skill-item-pct">80%</span></div>
+                            <div class="skill-bar">
+                                <div class="skill-bar-fill" data-width="80"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-item-top"><span class="skill-item-name">Java</span><span
+                                    class="skill-item-pct">65%</span></div>
+                            <div class="skill-bar">
+                                <div class="skill-bar-fill" data-width="65"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-item-top"><span class="skill-item-name">C / C++</span><span
+                                    class="skill-item-pct">60%</span></div>
+                            <div class="skill-bar">
+                                <div class="skill-bar-fill" data-width="60"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-item-top"><span class="skill-item-name">JavaScript</span><span
+                                    class="skill-item-pct">50%</span></div>
+                            <div class="skill-bar">
+                                <div class="skill-bar-fill" data-width="50"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="skill-card reveal reveal-delay-1">
+                    <div class="skill-card-icon">🧠</div>
+                    <div class="skill-card-title">AI / ML Technologies</div>
+                    <div class="skill-items">
+                        <div class="skill-item">
+                            <div class="skill-item-top"><span class="skill-item-name">GANs</span><span
+                                    class="skill-item-pct">70%</span></div>
+                            <div class="skill-bar">
+                                <div class="skill-bar-fill" data-width="70"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-item-top"><span class="skill-item-name">Transformers /
+                                    Attention</span><span class="skill-item-pct">55%</span></div>
+                            <div class="skill-bar">
+                                <div class="skill-bar-fill" data-width="55"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-item-top"><span class="skill-item-name">Deep Learning Basics</span><span
+                                    class="skill-item-pct">65%</span></div>
+                            <div class="skill-bar">
+                                <div class="skill-bar-fill" data-width="65"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-item-top"><span class="skill-item-name">PyTorch / TensorFlow</span><span
+                                    class="skill-item-pct">50%</span></div>
+                            <div class="skill-bar">
+                                <div class="skill-bar-fill" data-width="50"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="skill-card reveal reveal-delay-2">
+                    <div class="skill-card-icon">🛠</div>
+                    <div class="skill-card-title">Dev Tools</div>
+                    <div class="skill-items">
+                        <div class="skill-item">
+                            <div class="skill-item-top"><span class="skill-item-name">Git &amp; GitHub</span><span
+                                    class="skill-item-pct">72%</span></div>
+                            <div class="skill-bar">
+                                <div class="skill-bar-fill" data-width="72"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-item-top"><span class="skill-item-name">VS Code</span><span
+                                    class="skill-item-pct">85%</span></div>
+                            <div class="skill-bar">
+                                <div class="skill-bar-fill" data-width="85"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-item-top"><span class="skill-item-name">Linux / Bash</span><span
+                                    class="skill-item-pct">55%</span></div>
+                            <div class="skill-bar">
+                                <div class="skill-bar-fill" data-width="55"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-item-top"><span class="skill-item-name">Jupyter Notebooks</span><span
+                                    class="skill-item-pct">75%</span></div>
+                            <div class="skill-bar">
+                                <div class="skill-bar-fill" data-width="75"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="skill-card reveal reveal-delay-3">
+                    <div class="skill-card-icon">📐</div>
+                    <div class="skill-card-title">CS Concepts</div>
+                    <div class="skill-items">
+                        <div class="skill-item">
+                            <div class="skill-item-top"><span class="skill-item-name">Data Structures</span><span
+                                    class="skill-item-pct">75%</span></div>
+                            <div class="skill-bar">
+                                <div class="skill-bar-fill" data-width="75"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-item-top"><span class="skill-item-name">Algorithms</span><span
+                                    class="skill-item-pct">70%</span></div>
+                            <div class="skill-bar">
+                                <div class="skill-bar-fill" data-width="70"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-item-top"><span class="skill-item-name">OOP</span><span
+                                    class="skill-item-pct">78%</span></div>
+                            <div class="skill-bar">
+                                <div class="skill-bar-fill" data-width="78"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-item-top"><span class="skill-item-name">Database Basics</span><span
+                                    class="skill-item-pct">55%</span></div>
+                            <div class="skill-bar">
+                                <div class="skill-bar-fill" data-width="55"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PROJECTS -->
+    <section id="projects">
+        <div class="container">
+            <div class="section-header reveal">
+                <div class="section-tag">What I've Built</div>
+                <h2 class="section-title">Featured <span class="dim">Projects</span></h2>
+            </div>
+            <div class="filter-bar reveal">
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="ai">AI / ML</button>
+                <button class="filter-btn" data-filter="web">Web</button>
+                <button class="filter-btn" data-filter="software">Software</button>
+            </div>
+            <div class="projects-grid">
+
+                <div class="project-card reveal" data-category="ai">
+                    <div class="project-number">01 — AI/ML</div>
+                    <div class="project-title">GAN-Based Video Anomaly Detection</div>
+                    <div class="project-desc">
+                        Developed a system using Generative Adversarial Networks to detect anomalous events in
+                        surveillance video. The model learns the distribution of "normal" frames and flags deviations
+                        during inference.
+                    </div>
+                    <div class="project-learning">
+                        <div class="project-learning-label">Key Learning</div>
+                        <div class="project-learning-text">Understood GAN training dynamics, mode collapse issues, and
+                            how reconstruction error can act as an anomaly score.</div>
+                    </div>
+                    <div class="project-tags">
+                        <span class="tag">Python</span>
+                        <span class="tag">PyTorch</span>
+                        <span class="tag">GANs</span>
+                        <span class="tag">OpenCV</span>
+                        <span class="tag">NumPy</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="https://github.com/souravmallick" class="project-link" target="_blank">
+                            <svg viewBox="0 0 24 24" fill="currentColor">
+                                <path
+                                    d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.44 9.8 8.21 11.39.6.11.82-.26.82-.58v-2.03c-3.34.72-4.04-1.61-4.04-1.61-.54-1.38-1.33-1.74-1.33-1.74-1.09-.74.08-.73.08-.73 1.2.09 1.84 1.24 1.84 1.24 1.07 1.83 2.8 1.3 3.49 1 .11-.78.42-1.3.76-1.6-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.14-.3-.54-1.52.1-3.18 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 013-.4c1.02.005 2.04.14 3 .4 2.28-1.55 3.29-1.23 3.29-1.23.65 1.66.24 2.88.12 3.18.77.84 1.23 1.91 1.23 3.22 0 4.61-2.81 5.63-5.48 5.92.43.37.81 1.1.81 2.22v3.29c0 .32.22.7.83.58C20.57 21.8 24 17.31 24 12c0-6.63-5.37-12-12-12z" />
+                            </svg>
+                            GitHub
+                        </a>
+                        <a href="#" class="project-link" onclick="alert('Demo coming soon!')">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6" />
+                                <polyline points="15,3 21,3 21,9" />
+                                <line x1="10" y1="14" x2="21" y2="3" />
+                            </svg>
+                            Demo
+                        </a>
+                    </div>
+                </div>
+
+                <div class="project-card reveal reveal-delay-1" data-category="ai">
+                    <div class="project-number">02 — AI/ML</div>
+                    <div class="project-title">Transformer Attention Visualizer</div>
+                    <div class="project-desc">
+                        An interactive tool that visualizes self-attention maps from pre-trained transformer models.
+                        Built to deepen understanding of how attention mechanisms work across different NLP tasks.
+                    </div>
+                    <div class="project-learning">
+                        <div class="project-learning-label">Key Learning</div>
+                        <div class="project-learning-text">Gained hands-on understanding of multi-head attention,
+                            positional encoding, and why transformers excel at long-range dependencies.</div>
+                    </div>
+                    <div class="project-tags">
+                        <span class="tag">Python</span>
+                        <span class="tag">HuggingFace</span>
+                        <span class="tag">Transformers</span>
+                        <span class="tag">Matplotlib</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="https://github.com/souravmallick" class="project-link" target="_blank">
+                            <svg viewBox="0 0 24 24" fill="currentColor">
+                                <path
+                                    d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.44 9.8 8.21 11.39.6.11.82-.26.82-.58v-2.03c-3.34.72-4.04-1.61-4.04-1.61-.54-1.38-1.33-1.74-1.33-1.74-1.09-.74.08-.73.08-.73 1.2.09 1.84 1.24 1.84 1.24 1.07 1.83 2.8 1.3 3.49 1 .11-.78.42-1.3.76-1.6-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.14-.3-.54-1.52.1-3.18 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 013-.4c1.02.005 2.04.14 3 .4 2.28-1.55 3.29-1.23 3.29-1.23.65 1.66.24 2.88.12 3.18.77.84 1.23 1.91 1.23 3.22 0 4.61-2.81 5.63-5.48 5.92.43.37.81 1.1.81 2.22v3.29c0 .32.22.7.83.58C20.57 21.8 24 17.31 24 12c0-6.63-5.37-12-12-12z" />
+                            </svg>
+                            GitHub
+                        </a>
+                    </div>
+                </div>
+
+                <div class="project-card reveal reveal-delay-2" data-category="software">
+                    <div class="project-number">03 — Software</div>
+                    <div class="project-title">Student Task Manager CLI</div>
+                    <div class="project-desc">
+                        A command-line productivity tool for students to manage assignments, deadlines, and study
+                        sessions. Features priority queuing, reminder notifications, and a clean terminal UI.
+                    </div>
+                    <div class="project-learning">
+                        <div class="project-learning-label">Key Learning</div>
+                        <div class="project-learning-text">Reinforced OOP principles, file I/O, and applying data
+                            structures like priority queues in real-world contexts.</div>
+                    </div>
+                    <div class="project-tags">
+                        <span class="tag">Python</span>
+                        <span class="tag">OOP</span>
+                        <span class="tag">CLI</span>
+                        <span class="tag">JSON</span>
+                        <span class="tag">Rich</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="https://github.com/souravmallick" class="project-link" target="_blank">
+                            <svg viewBox="0 0 24 24" fill="currentColor">
+                                <path
+                                    d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.44 9.8 8.21 11.39.6.11.82-.26.82-.58v-2.03c-3.34.72-4.04-1.61-4.04-1.61-.54-1.38-1.33-1.74-1.33-1.74-1.09-.74.08-.73.08-.73 1.2.09 1.84 1.24 1.84 1.24 1.07 1.83 2.8 1.3 3.49 1 .11-.78.42-1.3.76-1.6-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.14-.3-.54-1.52.1-3.18 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 013-.4c1.02.005 2.04.14 3 .4 2.28-1.55 3.29-1.23 3.29-1.23.65 1.66.24 2.88.12 3.18.77.84 1.23 1.91 1.23 3.22 0 4.61-2.81 5.63-5.48 5.92.43.37.81 1.1.81 2.22v3.29c0 .32.22.7.83.58C20.57 21.8 24 17.31 24 12c0-6.63-5.37-12-12-12z" />
+                            </svg>
+                            GitHub
+                        </a>
+                    </div>
+                </div>
+
+                <div class="project-card reveal" data-category="web">
+                    <div class="project-number">04 — Web</div>
+                    <div class="project-title">AI Concepts Blog Platform</div>
+                    <div class="project-desc">
+                        A minimal blogging platform built to document and share learning notes on AI/ML concepts.
+                        Features markdown rendering, categorized posts, and a clean reading experience.
+                    </div>
+                    <div class="project-learning">
+                        <div class="project-learning-label">Key Learning</div>
+                        <div class="project-learning-text">Learned frontend fundamentals, responsive design principles,
+                            and the value of writing to solidify understanding.</div>
+                    </div>
+                    <div class="project-tags">
+                        <span class="tag">HTML/CSS</span>
+                        <span class="tag">JavaScript</span>
+                        <span class="tag">Markdown</span>
+                        <span class="tag">GitHub Pages</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="https://github.com/souravmallick" class="project-link" target="_blank">
+                            <svg viewBox="0 0 24 24" fill="currentColor">
+                                <path
+                                    d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.44 9.8 8.21 11.39.6.11.82-.26.82-.58v-2.03c-3.34.72-4.04-1.61-4.04-1.61-.54-1.38-1.33-1.74-1.33-1.74-1.09-.74.08-.73.08-.73 1.2.09 1.84 1.24 1.84 1.24 1.07 1.83 2.8 1.3 3.49 1 .11-.78.42-1.3.76-1.6-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.14-.3-.54-1.52.1-3.18 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 013-.4c1.02.005 2.04.14 3 .4 2.28-1.55 3.29-1.23 3.29-1.23.65 1.66.24 2.88.12 3.18.77.84 1.23 1.91 1.23 3.22 0 4.61-2.81 5.63-5.48 5.92.43.37.81 1.1.81 2.22v3.29c0 .32.22.7.83.58C20.57 21.8 24 17.31 24 12c0-6.63-5.37-12-12-12z" />
+                            </svg>
+                            GitHub
+                        </a>
+                        <a href="#" class="project-link" onclick="alert('Live site coming soon!')">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6" />
+                                <polyline points="15,3 21,3 21,9" />
+                                <line x1="10" y1="14" x2="21" y2="3" />
+                            </svg>
+                            Live
+                        </a>
+                    </div>
+                </div>
+
+                <div class="project-card reveal reveal-delay-1" data-category="ai">
+                    <div class="project-number">05 — AI/ML</div>
+                    <div class="project-title">Image Classification with CNN</div>
+                    <div class="project-desc">
+                        Implemented and trained a Convolutional Neural Network on CIFAR-10 dataset from scratch.
+                        Experimented with different architectures, learning rates, and regularization techniques.
+                    </div>
+                    <div class="project-learning">
+                        <div class="project-learning-label">Key Learning</div>
+                        <div class="project-learning-text">Understood convolutions, pooling, batch normalization, and
+                            the impact of hyperparameter tuning on model accuracy.</div>
+                    </div>
+                    <div class="project-tags">
+                        <span class="tag">Python</span>
+                        <span class="tag">TensorFlow</span>
+                        <span class="tag">Keras</span>
+                        <span class="tag">CNN</span>
+                        <span class="tag">CIFAR-10</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="https://github.com/souravmallick" class="project-link" target="_blank">
+                            <svg viewBox="0 0 24 24" fill="currentColor">
+                                <path
+                                    d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.44 9.8 8.21 11.39.6.11.82-.26.82-.58v-2.03c-3.34.72-4.04-1.61-4.04-1.61-.54-1.38-1.33-1.74-1.33-1.74-1.09-.74.08-.73.08-.73 1.2.09 1.84 1.24 1.84 1.24 1.07 1.83 2.8 1.3 3.49 1 .11-.78.42-1.3.76-1.6-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.14-.3-.54-1.52.1-3.18 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 013-.4c1.02.005 2.04.14 3 .4 2.28-1.55 3.29-1.23 3.29-1.23.65 1.66.24 2.88.12 3.18.77.84 1.23 1.91 1.23 3.22 0 4.61-2.81 5.63-5.48 5.92.43.37.81 1.1.81 2.22v3.29c0 .32.22.7.83.58C20.57 21.8 24 17.31 24 12c0-6.63-5.37-12-12-12z" />
+                            </svg>
+                            GitHub
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- EDUCATION -->
+    <section id="education">
+        <div class="container">
+            <div class="section-header reveal">
+                <div class="section-tag">Academic Journey</div>
+                <h2 class="section-title">Education</h2>
+            </div>
+            <div class="edu-card reveal">
+                <div class="edu-icon">🎓</div>
+                <div>
+                    <div class="edu-degree">B.Tech — Computer Science &amp; Engineering</div>
+                    <div class="edu-school">Your University / College Name, Odisha</div>
+                    <div class="edu-year">2022 – 2026 &nbsp;·&nbsp; Currently Enrolled</div>
+                    <div class="edu-courses-title">Relevant Coursework</div>
+                    <div class="edu-courses">
+                        <span class="course-tag">Artificial Intelligence</span>
+                        <span class="course-tag">Machine Learning</span>
+                        <span class="course-tag">Data Structures &amp; Algorithms</span>
+                        <span class="course-tag">Software Engineering</span>
+                        <span class="course-tag">Computer Networks</span>
+                        <span class="course-tag">Operating Systems</span>
+                        <span class="course-tag">Database Management</span>
+                        <span class="course-tag">Object Oriented Programming</span>
+                        <span class="course-tag">Computer Vision</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ACHIEVEMENTS -->
+    <section id="achievements">
+        <div class="container">
+            <div class="section-header reveal">
+                <div class="section-tag">Growth &amp; Learning</div>
+                <h2 class="section-title">Achievements &amp; <span class="dim">Certifications</span></h2>
+            </div>
+            <div class="achievements-grid">
+
+                <div class="achievement-card reveal">
+                    <div class="achievement-icon ach-blue">🏅</div>
+                    <div>
+                        <div class="achievement-title">Deep Learning Specialization</div>
+                        <div class="achievement-sub">Completed Andrew Ng's course covering CNNs, RNNs, and optimization
+                            techniques on Coursera.</div>
+                        <div class="achievement-badge">✓ COURSERA · 2024</div>
+                    </div>
+                </div>
+
+                <div class="achievement-card reveal reveal-delay-1">
+                    <div class="achievement-icon ach-purple">🤖</div>
+                    <div>
+                        <div class="achievement-title">Generative AI Fundamentals</div>
+                        <div class="achievement-sub">Studied GANs, VAEs, and diffusion models — applied knowledge to the
+                            anomaly detection project.</div>
+                        <div class="achievement-badge">✓ SELF-STUDY · 2024</div>
+                    </div>
+                </div>
+
+                <div class="achievement-card reveal reveal-delay-2">
+                    <div class="achievement-icon ach-green">📜</div>
+                    <div>
+                        <div class="achievement-title">Python for Data Science</div>
+                        <div class="achievement-sub">Completed a structured course covering NumPy, Pandas, Matplotlib,
+                            and data preprocessing pipelines.</div>
+                        <div class="achievement-badge">✓ CERTIFIED · 2023</div>
+                    </div>
+                </div>
+
+                <div class="achievement-card reveal">
+                    <div class="achievement-icon ach-blue">🔬</div>
+                    <div>
+                        <div class="achievement-title">Transformers Architecture Study</div>
+                        <div class="achievement-sub">Self-studied "Attention is All You Need" paper and implemented a
+                            mini transformer from scratch.</div>
+                        <div class="achievement-badge">✓ PAPER STUDY · 2024</div>
+                    </div>
+                </div>
+
+                <div class="achievement-card reveal reveal-delay-1">
+                    <div class="achievement-icon ach-purple">🏆</div>
+                    <div>
+                        <div class="achievement-title">College-Level Coding Contest</div>
+                        <div class="achievement-sub">Participated in intra-college programming competitions, solving
+                            algorithmic and logic-based challenges.</div>
+                        <div class="achievement-badge">✓ PARTICIPANT · 2023</div>
+                    </div>
+                </div>
+
+                <div class="achievement-card reveal reveal-delay-2">
+                    <div class="achievement-icon ach-green">📚</div>
+                    <div>
+                        <div class="achievement-title">Key Topics Mastered</div>
+                        <div class="achievement-sub">GANs · Transformers · Attention Mechanisms · Backpropagation ·
+                            Computer Vision basics · NLP fundamentals</div>
+                        <div class="achievement-badge">✓ ONGOING LEARNING</div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- BLOG -->
+    <section id="blog">
+        <div class="container">
+            <div class="section-header reveal">
+                <div class="section-tag">Thoughts &amp; Notes</div>
+                <h2 class="section-title">From the <span class="dim">Blog</span></h2>
+            </div>
+            <div class="blog-grid">
+                <div class="blog-card reveal">
+                    <div class="blog-date">Mar 2025 · AI/ML</div>
+                    <div class="blog-title">Understanding GANs: How Generators and Discriminators Play a Zero-Sum Game
+                    </div>
+                    <div class="blog-excerpt">A beginner-friendly walkthrough of how Generative Adversarial Networks
+                        work, common pitfalls like mode collapse, and lessons from implementing one...</div>
+                    <a href="#" class="blog-read-more" onclick="alert('Blog coming soon!')">Read More →</a>
+                </div>
+                <div class="blog-card reveal reveal-delay-1">
+                    <div class="blog-date">Feb 2025 · Theory</div>
+                    <div class="blog-title">Breaking Down "Attention is All You Need" — My Notes on the Transformer
+                        Paper</div>
+                    <div class="blog-excerpt">My attempt to summarize the landmark Transformer paper in plain language,
+                        with diagrams and code snippets to make the math approachable...</div>
+                    <a href="#" class="blog-read-more" onclick="alert('Blog coming soon!')">Read More →</a>
+                </div>
+                <div class="blog-card reveal reveal-delay-2">
+                    <div class="blog-date">Jan 2025 · Reflection</div>
+                    <div class="blog-title">6 Months of Learning ML: What Worked, What Didn't, and What's Next</div>
+                    <div class="blog-excerpt">An honest reflection on my journey learning machine learning as a CS
+                        student — the resources that helped most and the mindset shifts along the way...</div>
+                    <a href="#" class="blog-read-more" onclick="alert('Blog coming soon!')">Read More →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact">
+        <div class="container">
+            <div class="section-header reveal">
+                <div class="section-tag">Get In Touch</div>
+                <h2 class="section-title">Let's <span class="dim">Connect</span></h2>
+            </div>
+            <div class="contact-grid">
+                <div class="reveal">
+                    <p>I'm always open to interesting conversations, collaboration opportunities, or just talking about
+                        AI and tech. Feel free to reach out!</p>
+                    <div class="contact-links">
+                        <a href="/cdn-cgi/l/email-protection#f0839f85829186de9d919c9c99939bb0959d91999cde939f9d"
+                            class="contact-link">
+                            <div class="contact-link-icon">✉️</div>
+                            <div class="contact-link-text">
+                                <span class="contact-link-label">Email</span>
+                                <span class="contact-link-val"><span class="__cf_email__"
+                                        data-cfemail="cfbca0babdaeb9e1a2aea3a3a6aca48faaa2aea6a3e1aca0a2">[email&#160;protected]</span></span>
+                            </div>
+                        </a>
+                        <a href="https://linkedin.com/in/souravmallick" class="contact-link" target="_blank">
+                            <div class="contact-link-icon">💼</div>
+                            <div class="contact-link-text">
+                                <span class="contact-link-label">LinkedIn</span>
+                                <span class="contact-link-val">linkedin.com/in/souravmallick</span>
+                            </div>
+                        </a>
+                        <a href="https://github.com/souravmallick" class="contact-link" target="_blank">
+                            <div class="contact-link-icon">🐙</div>
+                            <div class="contact-link-text">
+                                <span class="contact-link-label">GitHub</span>
+                                <span class="contact-link-val">github.com/souravmallick</span>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="contact-form reveal reveal-delay-2">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">Name</label>
+                            <input class="form-input" type="text" placeholder="Your name">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Email</label>
+                            <input class="form-input" type="email" placeholder="your@email.com">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Subject</label>
+                        <input class="form-input" type="text" placeholder="What's this about?">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Message</label>
+                        <textarea class="form-textarea" placeholder="Write your message here..."></textarea>
+                    </div>
+                    <button class="form-submit" onclick="handleFormSubmit(this)">Send Message →</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-inner">
+            <div class="footer-copy">
+                © 2025 <span>Sourav Mallick</span> · Built with curiosity &amp; caffeine ☕
+            </div>
+            <div class="footer-links">
+                <a href="#hero">Home</a>
+                <a href="#projects">Projects</a>
+                <a href="#blog">Blog</a>
+                <a href="#contact">Contact</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- GSAP & Lenis for Smooth Scrolling -->
+    <script src="https://unpkg.com/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>
