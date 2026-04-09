@@ -9,19 +9,66 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Syne:wght@400;600;700;800&family=Inter:wght@300;400;500&display=swap"
         rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/locomotive-scroll@4.1.4/dist/locomotive-scroll.min.css">
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
     <!-- LOADER -->
-    <div id="loader">
+    <div id="loader" style="gap: 3rem;">
         <div class="loader-content">
             <span class="loader-name">Sourav<br>Mallick</span>
             <div class="loader-line-wrap">
                 <div class="loader-line" id="loaderBar"></div>
             </div>
             <span class="loader-pct" id="loaderPct">0%</span>
+        </div>
+        <!-- From Uiverse.io by Praashoo7 -->
+        <div class="main">
+            <div class="up">
+                <div class="loaders">
+                    <div class="loader"></div>
+                    <div class="loader"></div>
+                    <div class="loader"></div>
+                    <div class="loader"></div>
+                    <div class="loader"></div>
+                    <div class="loader"></div>
+                    <div class="loader"></div>
+                    <div class="loader"></div>
+                    <div class="loader"></div>
+                    <div class="loader"></div>
+                </div>
+                <div class="loadersB">
+                    <div class="loaderA">
+                        <div class="ball0"></div>
+                    </div>
+                    <div class="loaderA">
+                        <div class="ball1"></div>
+                    </div>
+                    <div class="loaderA">
+                        <div class="ball2"></div>
+                    </div>
+                    <div class="loaderA">
+                        <div class="ball3"></div>
+                    </div>
+                    <div class="loaderA">
+                        <div class="ball4"></div>
+                    </div>
+                    <div class="loaderA">
+                        <div class="ball5"></div>
+                    </div>
+                    <div class="loaderA">
+                        <div class="ball6"></div>
+                    </div>
+                    <div class="loaderA">
+                        <div class="ball7"></div>
+                    </div>
+                    <div class="loaderA">
+                        <div class="ball8"></div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -41,7 +88,7 @@
             <span></span><span></span><span></span>
         </button>
     </nav>
-    
+
     <!-- CIRCULAR FAB MENU -->
     <button class="fab-nav-btn" id="fabMenu" aria-label="Menu">
         <span></span><span></span><span></span>
@@ -59,7 +106,10 @@
     </div>
 
     <!-- SCROLL TO TOP -->
-    <div id="scroll-top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</div>
+    <div id="scroll-top" onclick="scrollToTop()">↑</div>
+
+    <!-- SCROLL CONTAINER (Locomotive Scroll) -->
+    <main data-scroll-container id="main-container">
 
     <!-- HERO -->
     <section id="hero" class="hero-image-v2">
@@ -69,23 +119,27 @@
 
         <div class="hero-inner-v2">
             <div class="hero-card-v2">
-                
+
                 <!-- TOP HEADER -->
                 <div class="hero-top-v2">
                     <div class="hero-eyebrow-v2">Hello, World!</div>
                 </div>
-                
+
                 <!-- BOTTOM TEXT -->
                 <div class="hero-bottom-v2">
-                    <h1 class="hero-name-huge-v2">Sourav<br>Mallick</h1>
+                    <div class="hero-name-group-v2">
+                        <div class="hero-iam-v2">I am</div>
+                        <h1 class="hero-name-huge-v2">Sourav<br>Mallick</h1>
+                    </div>
                     <div class="hero-info-right-v2">
                         <div class="hero-title-small-v2">Computer Science Student /<br>Aspiring Software Developer</div>
                         <p class="hero-tagline-small-v2">
-                            Exploring <em>AI</em>, building projects, and continuously learning new technologies — one commit at a time.
+                            Exploring <em>AI</em>, building projects, and continuously learning new technologies — one
+                            commit at a time.
                         </p>
                     </div>
                 </div>
-                
+
             </div>
         </div>
     </section>
@@ -708,8 +762,10 @@
         </div>
     </footer>
 
-    <!-- GSAP & Lenis for Smooth Scrolling -->
-    <script src="https://unpkg.com/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
+    </main><!-- /data-scroll-container -->
+
+    <!-- GSAP & Locomotive Scroll -->
+    <script src="https://cdn.jsdelivr.net/npm/locomotive-scroll@4.1.4/dist/locomotive-scroll.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 

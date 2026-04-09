@@ -3,40 +3,41 @@ window.addEventListener('DOMContentLoaded', () => {
     const loader = document.getElementById('loader');
     const loaderBar = document.getElementById('loaderBar');
     const loaderPct = document.getElementById('loaderPct');
-    
+
     let percentage = 0;
     // Simulate loading time (faster, ~800ms total)
     const duration = 800;
-    const interval = 20; 
+    const interval = 20;
     const steps = duration / interval;
     const increment = 100 / steps;
 
     // Use setInterval to increment percentage progressively
     const timer = setInterval(() => {
         percentage += increment;
-        
+
         // Add some random variation for a more natural feel
-        if(Math.random() > 0.8) {
-            percentage += (Math.random() * 5); 
+        if (Math.random() > 0.8) {
+            percentage += (Math.random() * 5);
         }
-        
+
         if (percentage >= 100) {
             percentage = 100;
             clearInterval(timer);
-            
+
             // Finish animation
             loaderBar.style.width = '100%';
             loaderPct.innerText = '100%';
-            
+
             // Let the 100% sit for a tiny bit, then slide up loader
             setTimeout(() => {
                 loader.classList.add('hidden');
-                
+
                 // Allow CSS transition to finish before triggering scroll-reveal animations
                 setTimeout(() => {
                     triggerReveal();
+                    animateHeroEntrance();
                 }, 800);
-            }, 300);
+            }, 1000);
         } else {
             loaderBar.style.width = percentage + '%';
             loaderPct.innerText = Math.floor(percentage) + '%';
@@ -49,22 +50,24 @@ const navbar = document.getElementById('navbar');
 const scrollTop = document.getElementById('scroll-top');
 const fabMenu = document.getElementById('fabMenu');
 const heroSection = document.getElementById('hero');
-let lastScrollY = window.scrollY;
+let lastScrollY = 0;
+let currentScrollY = 0;
 
-window.addEventListener('scroll', () => {
-    const y = window.scrollY;
+// This function is called by Locomotive Scroll's on('scroll') event
+function onLocoScroll(y) {
+    currentScrollY = y;
     navbar.classList.toggle('scrolled', y > 50);
     scrollTop.classList.toggle('visible', y > 400);
-    updateActiveNav();
-    
+    updateActiveNav(y);
+
     // FAB & Nav Hide Logic
     const heroHeight = heroSection ? heroSection.offsetHeight - 100 : 500;
     const isScrollingUp = y < lastScrollY;
-    
+
     if (y > heroHeight) {
         // Past hero section
         navbar.classList.add('hidden-nav');
-        
+
         if (isScrollingUp) {
             fabMenu.classList.add('visible');
         } else {
@@ -75,16 +78,16 @@ window.addEventListener('scroll', () => {
         navbar.classList.remove('hidden-nav');
         fabMenu.classList.remove('visible');
     }
-    
-    lastScrollY = y;
-});
 
-function updateActiveNav() {
+    lastScrollY = y;
+}
+
+function updateActiveNav(scrollY) {
     const sections = document.querySelectorAll('section[id]');
     const links = document.querySelectorAll('.nav-links a');
     let current = '';
     sections.forEach(s => {
-        if (window.scrollY >= s.offsetTop - 120) current = s.getAttribute('id');
+        if (scrollY >= s.offsetTop - 120) current = s.getAttribute('id');
     });
     links.forEach(a => {
         a.classList.toggle('active', a.getAttribute('href') === '#' + current);
@@ -97,17 +100,17 @@ const mobileMenu = document.getElementById('mobileMenu');
 
 function toggleMobileMenu() {
     hamburger.classList.toggle('open');
-    if(fabMenu) fabMenu.classList.toggle('open');
+    if (fabMenu) fabMenu.classList.toggle('open');
     mobileMenu.classList.toggle('open');
     document.body.style.overflow = mobileMenu.classList.contains('open') ? 'hidden' : '';
 }
 
 hamburger.addEventListener('click', toggleMobileMenu);
-if(fabMenu) fabMenu.addEventListener('click', toggleMobileMenu);
+if (fabMenu) fabMenu.addEventListener('click', toggleMobileMenu);
 
 function closeMobileMenu() {
     hamburger.classList.remove('open');
-    if(fabMenu) fabMenu.classList.remove('open');
+    if (fabMenu) fabMenu.classList.remove('open');
     mobileMenu.classList.remove('open');
     document.body.style.overflow = '';
 }
@@ -166,37 +169,93 @@ function handleFormSubmit(btn) {
     }, 1500);
 }
 
-// ── SMOOTH SCROLL (Lenis + GSAP) ──
-const lenis = new Lenis({
-    duration: 1.2,
-    easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), 
-    direction: 'vertical',
-    gestureDirection: 'vertical',
+// ── SMOOTH SCROLL (Locomotive Scroll + GSAP) ──
+const scrollContainer = document.querySelector('#main-container');
+
+const locoScroll = new LocomotiveScroll({
+    el: scrollContainer,
     smooth: true,
-    mouseMultiplier: 1,
-    smoothTouch: false,
-    touchMultiplier: 2,
-    infinite: false,
+    multiplier: 1,
+    lerp: 0.08,
+    smartphone: { smooth: false },
+    tablet: { smooth: true, breakpoint: 768 },
 });
 
-// Update GSAP ScrollTrigger whenever Lenis updates scroll
-lenis.on('scroll', ScrollTrigger.update);
+// Register GSAP ScrollTrigger
+gsap.registerPlugin(ScrollTrigger);
 
-// Sync GSAP ticker with Lenis requestAnimationFrame
-gsap.ticker.add((time) => {
-    lenis.raf(time * 1000);
+// Configure ScrollTrigger to use Locomotive Scroll's scroll position
+ScrollTrigger.scrollerProxy(scrollContainer, {
+    scrollTop(value) {
+        return arguments.length
+            ? locoScroll.scrollTo(value, { duration: 0, disableLerp: true })
+            : locoScroll.scroll.instance.scroll.y;
+    },
+    getBoundingClientRect() {
+        return {
+            top: 0,
+            left: 0,
+            width: window.innerWidth,
+            height: window.innerHeight,
+        };
+    },
+    pinType: scrollContainer.style.transform ? 'transform' : 'fixed',
 });
 
-// Disable GSAP lag smoothing to avoid jumps during scroll
-gsap.ticker.lagSmoothing(0);
+// Sync: update ScrollTrigger & nav logic whenever Locomotive Scroll updates
+locoScroll.on('scroll', (args) => {
+    ScrollTrigger.update();
+    onLocoScroll(args.scroll.y);
+});
 
-// Update native Anchor link functionality to use Lenis smooth scroll
+// Refresh ScrollTrigger and Locomotive Scroll on window load/resize
+ScrollTrigger.addEventListener('refresh', () => locoScroll.update());
+ScrollTrigger.refresh();
+
+// Anchor link smooth scroll via Locomotive Scroll
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
         e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
+        const targetId = this.getAttribute('href');
+        const target = document.querySelector(targetId);
         if (target) {
-            lenis.scrollTo(target);
+            locoScroll.scrollTo(target);
         }
     });
 });
+
+// Scroll to top helper (called from the #scroll-top button)
+function scrollToTop() {
+    locoScroll.scrollTo(0);
+}
+
+// ── HERO STAGGERED ENTRANCE ──
+function animateHeroEntrance() {
+    const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
+
+    tl.to('.hero-eyebrow-v2', {
+        opacity: 1,
+        y: 0,
+        duration: 0.7,
+    })
+        .to('.hero-iam-v2', {
+            opacity: 1,
+            y: 0,
+            duration: 0.6,
+        }, '-=0.3')
+        .to('.hero-name-huge-v2', {
+            opacity: 1,
+            y: 0,
+            duration: 0.9,
+        }, '-=0.35')
+        .to('.hero-title-small-v2', {
+            opacity: 1,
+            y: 0,
+            duration: 0.7,
+        }, '-=0.4')
+        .to('.hero-tagline-small-v2', {
+            opacity: 1,
+            y: 0,
+            duration: 0.7,
+        }, '-=0.35');
+}
