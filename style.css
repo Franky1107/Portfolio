@@ -1,5 +1,7 @@
 :root {
-    /* ── Cool Green Palette ── */
+    /* =========================================
+   START SECTION: Cool Green Palette
+   ========================================= */
     --bg: #22577A;
     /* deep teal – main bg */
     --bg2: #1a4562;
@@ -12,7 +14,14 @@
     /* hover / active surface */
     --border: #38A3A5;
     /* teal – subtle border */
-    /* ── Accent palette ── */
+
+/* =========================================
+   END SECTION: Cool Green Palette
+   ========================================= */
+
+/* =========================================
+   START SECTION: Accent palette
+   ========================================= */
     --accent: #57CC99;
     /* emerald – primary accent / CTAs */
     --accent2: #38A3A5;
@@ -21,18 +30,39 @@
     /* light green – highlights */
     --orange: #57CC99;
     /* emerald – hover / emphasis */
-    /* ── Text ── */
+
+/* =========================================
+   END SECTION: Accent palette
+   ========================================= */
+
+/* =========================================
+   START SECTION: Text
+   ========================================= */
     --text: #C7F9CC;
     /* tea green – primary text */
     --text2: #a3e8b0;
     /* muted green – secondary text */
     --text3: #80d094;
     /* muted sage */
-    /* ── Glow ── */
+
+/* =========================================
+   END SECTION: Text
+   ========================================= */
+
+/* =========================================
+   START SECTION: Glow
+   ========================================= */
     --glow: rgba(87, 204, 153, 0.25);
     --glow2: rgba(56, 163, 165, 0.2);
     --glow3: rgba(128, 237, 153, 0.2);
-    /* ── Legacy alias ── */
+
+/* =========================================
+   END SECTION: Glow
+   ========================================= */
+
+/* =========================================
+   START SECTION: Legacy alias
+   ========================================= */
     --cream: #C7F9CC;
 }
 
@@ -59,7 +89,13 @@ body {
     overflow-x: hidden;
 }
 
-/* ── LOADING SCREEN ── */
+/* =========================================
+   END SECTION: Legacy alias
+   ========================================= */
+
+/* =========================================
+   START SECTION: LOADING SCREEN
+   ========================================= */
 #loader {
     position: fixed;
     inset: 0;
@@ -134,7 +170,76 @@ body {
     }
 }
 
-/* ── NAV ── */
+/* =========================================
+   END SECTION: LOADING SCREEN
+   ========================================= */
+
+/* =========================================
+   START SECTION: NAV TRANSITION SPLASH
+   ========================================= */
+.nav-splash {
+    position: fixed;
+    inset: 0;
+    z-index: 9998;
+    background: #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+    clip-path: polygon(0 50%, 100% 50%, 100% 50%, 0 50%);
+    transition: clip-path 0.6s cubic-bezier(0.76, 0, 0.24, 1);
+}
+
+.nav-splash.active {
+    pointer-events: all;
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+}
+
+.nav-splash.closing {
+    clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
+    transition: clip-path 0.5s cubic-bezier(0.76, 0, 0.24, 1) 0.1s;
+}
+
+.nav-splash-inner {
+    position: relative;
+    width: 100%;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.splash-word {
+    position: absolute;
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(2.5rem, 7vw, 5rem);
+    font-weight: 800;
+    color: #fff;
+    letter-spacing: -0.02em;
+    opacity: 0;
+    transform: translateY(30px) rotateX(40deg);
+    transition: opacity 0.3s ease, transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+    white-space: nowrap;
+}
+
+.splash-word.active {
+    opacity: 1;
+    transform: translateY(0) rotateX(0deg);
+}
+
+.splash-word.exit {
+    opacity: 0;
+    transform: translateY(-30px) rotateX(-40deg);
+    transition: opacity 0.2s ease, transform 0.25s ease-in;
+}
+
+/* =========================================
+   END SECTION: NAV TRANSITION SPLASH
+   ========================================= */
+
+/* =========================================
+   START SECTION: NAV
+   ========================================= */
 nav {
     position: fixed;
     top: 0;
@@ -355,7 +460,13 @@ nav.scrolled {
     text-shadow: 0 0 20px rgba(255, 183, 3, 0.4);
 }
 
-/* ── SECTIONS ── */
+/* =========================================
+   END SECTION: NAV
+   ========================================= */
+
+/* =========================================
+   START SECTION: SECTIONS
+   ========================================= */
 section {
     padding: 6rem 2rem;
 }
@@ -365,7 +476,13 @@ section {
     margin: 0 auto;
 }
 
-/* ── HERO ── */
+/* =========================================
+   END SECTION: SECTIONS
+   ========================================= */
+
+/* =========================================
+   START SECTION: HERO
+   ========================================= */
 #hero {
     min-height: 100vh;
     display: flex;
@@ -699,7 +816,13 @@ section {
     }
 }
 
-/* ── SECTION HEADERS ── */
+/* =========================================
+   END SECTION: HERO
+   ========================================= */
+
+/* =========================================
+   START SECTION: SECTION HEADERS
+   ========================================= */
 .section-header {
     margin-bottom: 4rem;
 }
@@ -735,7 +858,13 @@ section {
     color: var(--text3);
 }
 
-/* ── ABOUT ── */
+/* =========================================
+   END SECTION: SECTION HEADERS
+   ========================================= */
+
+/* =========================================
+   START SECTION: ABOUT
+   ========================================= */
 #about {
     background: var(--bg2);
 }
@@ -913,7 +1042,13 @@ section {
     background: rgba(255, 183, 3, 0.07);
 }
 
-/* ── SKILLS ── */
+/* =========================================
+   END SECTION: ABOUT
+   ========================================= */
+
+/* =========================================
+   START SECTION: SKILLS
+   ========================================= */
 #skills {
     background: var(--bg);
 }
@@ -1021,7 +1156,13 @@ section {
     box-shadow: 0 0 6px rgba(33, 158, 188, 0.6);
 }
 
-/* ── PROJECTS ── */
+/* =========================================
+   END SECTION: SKILLS
+   ========================================= */
+
+/* =========================================
+   START SECTION: PROJECTS
+   ========================================= */
 #projects {
     background: transparent;
 }
@@ -1197,7 +1338,13 @@ section {
     height: 12px;
 }
 
-/* ── EDUCATION ── */
+/* =========================================
+   END SECTION: PROJECTS
+   ========================================= */
+
+/* =========================================
+   START SECTION: EDUCATION
+   ========================================= */
 #education {
     background: transparent;
 }
@@ -1295,7 +1442,13 @@ section {
     color: var(--text2);
 }
 
-/* ── ACHIEVEMENTS ── */
+/* =========================================
+   END SECTION: EDUCATION
+   ========================================= */
+
+/* =========================================
+   START SECTION: ACHIEVEMENTS
+   ========================================= */
 #achievements {
     background: transparent;
 }
@@ -1374,7 +1527,13 @@ section {
     margin-top: 0.5rem;
 }
 
-/* ── CONTACT ── */
+/* =========================================
+   END SECTION: ACHIEVEMENTS
+   ========================================= */
+
+/* =========================================
+   START SECTION: CONTACT
+   ========================================= */
 #contact {
     background: transparent;
 }
@@ -1531,7 +1690,13 @@ section {
     box-shadow: 0 0 30px rgba(255, 183, 3, 0.5);
 }
 
-/* ── FOOTER ── */
+/* =========================================
+   END SECTION: CONTACT
+   ========================================= */
+
+/* =========================================
+   START SECTION: FOOTER
+   ========================================= */
 footer {
     border-top: 1px solid rgba(255, 255, 255, 0.06);
     padding: 2rem;
@@ -1580,7 +1745,13 @@ footer {
     color: var(--accent2);
 }
 
-/* ── ANIMATIONS ── */
+/* =========================================
+   END SECTION: FOOTER
+   ========================================= */
+
+/* =========================================
+   START SECTION: ANIMATIONS
+   ========================================= */
 @keyframes fadeUp {
     from {
         opacity: 0;
@@ -1630,7 +1801,13 @@ footer {
     transition-delay: 0.4s;
 }
 
-/* ── RESUME BUTTON ── */
+/* =========================================
+   END SECTION: ANIMATIONS
+   ========================================= */
+
+/* =========================================
+   START SECTION: RESUME BUTTON
+   ========================================= */
 .resume-btn {
     display: inline-flex;
     align-items: center;
@@ -1654,7 +1831,13 @@ footer {
     box-shadow: 0 0 14px var(--glow2);
 }
 
-/* ── BLOG TEASER ── */
+/* =========================================
+   END SECTION: RESUME BUTTON
+   ========================================= */
+
+/* =========================================
+   START SECTION: BLOG TEASER
+   ========================================= */
 #blog {
     background: transparent;
     border-top: 1px solid var(--border);
@@ -1723,7 +1906,13 @@ footer {
     color: var(--cream);
 }
 
-/* ── RESPONSIVE ── */
+/* =========================================
+   END SECTION: BLOG TEASER
+   ========================================= */
+
+/* =========================================
+   START SECTION: RESPONSIVE
+   ========================================= */
 @media (max-width: 768px) {
     nav {
         padding: 1rem 1.25rem;
@@ -1797,7 +1986,13 @@ footer {
     }
 }
 
-/* ── SCROLL TO TOP ── */
+/* =========================================
+   END SECTION: RESPONSIVE
+   ========================================= */
+
+/* =========================================
+   START SECTION: SCROLL TO TOP
+   ========================================= */
 #scroll-top {
     position: fixed;
     bottom: 2rem;
@@ -1833,7 +2028,13 @@ footer {
     box-shadow: 0 0 12px var(--glow2);
 }
 
-/* ── TERMINAL TYPING ── */
+/* =========================================
+   END SECTION: SCROLL TO TOP
+   ========================================= */
+
+/* =========================================
+   START SECTION: TERMINAL TYPING
+   ========================================= */
 .typed-cursor {
     animation: blink 1s step-end infinite;
 }
@@ -2086,3 +2287,7 @@ body::before {
         transform: translateY(0em);
     }
 }
+
+/* =========================================
+   END SECTION: TERMINAL TYPING
+   ========================================= */

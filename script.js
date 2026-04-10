@@ -1,4 +1,6 @@
-// ── LOADER ──
+// =========================================
+// START SECTION: LOADER
+// =========================================
 window.addEventListener('DOMContentLoaded', () => {
     const loader = document.getElementById('loader');
     const loaderBar = document.getElementById('loaderBar');
@@ -45,7 +47,13 @@ window.addEventListener('DOMContentLoaded', () => {
     }, interval);
 });
 
-// ── NAV SCROLL ──
+// =========================================
+// END SECTION: LOADER
+// =========================================
+
+// =========================================
+// START SECTION: NAV SCROLL
+// =========================================
 const navbar = document.getElementById('navbar');
 const scrollTop = document.getElementById('scroll-top');
 const fabMenu = document.getElementById('fabMenu');
@@ -94,7 +102,13 @@ function updateActiveNav(scrollY) {
     });
 }
 
-// ── MOBILE MENU ──
+// =========================================
+// END SECTION: NAV SCROLL
+// =========================================
+
+// =========================================
+// START SECTION: MOBILE MENU
+// =========================================
 const hamburger = document.getElementById('hamburger');
 const mobileMenu = document.getElementById('mobileMenu');
 
@@ -115,7 +129,13 @@ function closeMobileMenu() {
     document.body.style.overflow = '';
 }
 
-// ── REVEAL ON SCROLL ──
+// =========================================
+// END SECTION: MOBILE MENU
+// =========================================
+
+// =========================================
+// START SECTION: REVEAL ON SCROLL
+// =========================================
 function triggerReveal() {
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(e => {
@@ -137,7 +157,13 @@ function triggerReveal() {
     document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 }
 
-// ── PROJECT FILTER ──
+// =========================================
+// END SECTION: REVEAL ON SCROLL
+// =========================================
+
+// =========================================
+// START SECTION: PROJECT FILTER
+// =========================================
 document.querySelectorAll('.filter-btn').forEach(btn => {
     btn.addEventListener('click', () => {
         document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
@@ -154,7 +180,13 @@ document.querySelectorAll('.filter-btn').forEach(btn => {
     });
 });
 
-// ── FORM SUBMIT ──
+// =========================================
+// END SECTION: PROJECT FILTER
+// =========================================
+
+// =========================================
+// START SECTION: FORM SUBMIT
+// =========================================
 function handleFormSubmit(btn) {
     btn.textContent = 'Sending...';
     btn.disabled = true;
@@ -169,7 +201,13 @@ function handleFormSubmit(btn) {
     }, 1500);
 }
 
-// ── SMOOTH SCROLL (Locomotive Scroll + GSAP) ──
+// =========================================
+// END SECTION: FORM SUBMIT
+// =========================================
+
+// =========================================
+// START SECTION: SMOOTH SCROLL (Locomotive Scroll + GSAP)
+// =========================================
 const scrollContainer = document.querySelector('#main-container');
 
 const locoScroll = new LocomotiveScroll({
@@ -212,24 +250,107 @@ locoScroll.on('scroll', (args) => {
 ScrollTrigger.addEventListener('refresh', () => locoScroll.update());
 ScrollTrigger.refresh();
 
-// Anchor link smooth scroll via Locomotive Scroll
+// =========================================
+// END SECTION: SMOOTH SCROLL (Locomotive Scroll + GSAP)
+// =========================================
+
+// =========================================
+// START SECTION: NAV SPLASH TRANSITION
+// =========================================
+const navSplash = document.getElementById('navSplash');
+const splashWords = document.querySelectorAll('.splash-word');
+let isSplashActive = false;
+
+function showNavSplash(targetEl, callback) {
+    if (isSplashActive) return;
+    isSplashActive = true;
+
+    // Reset all words
+    splashWords.forEach(w => {
+        w.classList.remove('active', 'exit');
+    });
+
+    // Show first word and activate overlay
+    splashWords[0].classList.add('active');
+    navSplash.classList.remove('closing');
+    navSplash.classList.add('active');
+
+    let currentWord = 0;
+    const totalWords = splashWords.length;
+    const wordInterval = 250; // ms per word
+
+    // Cycle through greetings
+    const cycleTimer = setInterval(() => {
+        // Exit current word
+        splashWords[currentWord].classList.remove('active');
+        splashWords[currentWord].classList.add('exit');
+
+        currentWord++;
+
+        if (currentWord >= totalWords) {
+            clearInterval(cycleTimer);
+
+            // Scroll to target while splash is still visible
+            if (targetEl) {
+                locoScroll.scrollTo(targetEl, { duration: 0, disableLerp: true });
+            } else if (callback) {
+                callback();
+            }
+
+            // Brief pause then close the splash
+            setTimeout(() => {
+                navSplash.classList.add('closing');
+                navSplash.classList.remove('active');
+
+                // Clean up after close animation finishes
+                setTimeout(() => {
+                    navSplash.classList.remove('closing');
+                    splashWords.forEach(w => w.classList.remove('active', 'exit'));
+                    isSplashActive = false;
+
+                    // Update loco scroll after navigation
+                    locoScroll.update();
+                }, 600);
+            }, 200);
+        } else {
+            // Show next word
+            splashWords[currentWord].classList.add('active');
+        }
+    }, wordInterval);
+}
+
+// Anchor link click → splash transition → scroll
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
         e.preventDefault();
         const targetId = this.getAttribute('href');
         const target = document.querySelector(targetId);
+
+        // Close mobile menu if open
+        if (mobileMenu.classList.contains('open')) {
+            closeMobileMenu();
+        }
+
         if (target) {
-            locoScroll.scrollTo(target);
+            showNavSplash(target);
         }
     });
 });
 
-// Scroll to top helper (called from the #scroll-top button)
+// Scroll to top with splash
 function scrollToTop() {
-    locoScroll.scrollTo(0);
+    showNavSplash(null, () => {
+        locoScroll.scrollTo(0, { duration: 0, disableLerp: true });
+    });
 }
 
-// ── HERO STAGGERED ENTRANCE ──
+// =========================================
+// END SECTION: NAV SPLASH TRANSITION
+// =========================================
+
+// =========================================
+// START SECTION: HERO STAGGERED ENTRANCE
+// =========================================
 function animateHeroEntrance() {
     const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
 
@@ -259,3 +380,7 @@ function animateHeroEntrance() {
             duration: 0.7,
         }, '-=0.35');
 }
+
+// =========================================
+// END SECTION: HERO STAGGERED ENTRANCE
+// =========================================
