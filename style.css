@@ -1042,6 +1042,45 @@ section {
     background: rgba(255, 183, 3, 0.07);
 }
 
+.scroll-velocity-wrapper {
+    margin-top: 5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    width: 100vw;
+    margin-left: calc(-50vw + 50%); /* Full bleed trick */
+}
+
+.parallax {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+}
+
+.scroller {
+  display: flex;
+  white-space: nowrap;
+  text-align: center;
+  font-family: 'Syne', sans-serif;
+  font-size: 2.25rem;
+  font-weight: bold;
+  letter-spacing: -0.02em;
+  color: var(--text2);
+  opacity: 0.6;
+  filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.1));
+}
+
+.scroller span {
+  flex-shrink: 0;
+}
+
+@media (min-width: 768px) {
+  .scroller {
+    font-size: 5rem;
+    line-height: 5rem;
+  }
+}
+
 /* =========================================
    END SECTION: ABOUT
    ========================================= */

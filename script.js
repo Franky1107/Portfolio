@@ -38,6 +38,9 @@ window.addEventListener('DOMContentLoaded', () => {
                 setTimeout(() => {
                     triggerReveal();
                     animateHeroEntrance();
+                    
+                    // 🚀 INIT HERE (not before)
+                    initLoco();
                 }, 800);
             }, 1000);
         } else {
@@ -208,50 +211,71 @@ function handleFormSubmit(btn) {
 // =========================================
 // START SECTION: SMOOTH SCROLL (Locomotive Scroll + GSAP)
 // =========================================
-const scrollContainer = document.querySelector('#main-container');
+let locoScroll;
 
-const locoScroll = new LocomotiveScroll({
-    el: scrollContainer,
-    smooth: true,
-    multiplier: 1,
-    lerp: 0.08,
-    smartphone: { smooth: false },
-    tablet: { smooth: true, breakpoint: 768 },
-});
+function initLoco() {
+    const scrollContainer = document.querySelector('#main-container');
 
-// Register GSAP ScrollTrigger
-gsap.registerPlugin(ScrollTrigger);
+    locoScroll = new LocomotiveScroll({
+        el: scrollContainer,
+        smooth: true,
+        multiplier: 1,
+        lerp: 0.08,
+        smartphone: { smooth: false },
+        tablet: { smooth: true, breakpoint: 768 },
+    });
 
-// Configure ScrollTrigger to use Locomotive Scroll's scroll position
-ScrollTrigger.scrollerProxy(scrollContainer, {
-    scrollTop(value) {
-        return arguments.length
-            ? locoScroll.scrollTo(value, { duration: 0, disableLerp: true })
-            : locoScroll.scroll.instance.scroll.y;
-    },
-    getBoundingClientRect() {
-        return {
-            top: 0,
-            left: 0,
-            width: window.innerWidth,
-            height: window.innerHeight,
-        };
-    },
-    pinType: scrollContainer.style.transform ? 'transform' : 'fixed',
-});
+    // Register GSAP ScrollTrigger
+    gsap.registerPlugin(ScrollTrigger);
 
-// Sync: update ScrollTrigger & nav logic whenever Locomotive Scroll updates
-locoScroll.on('scroll', (args) => {
-    ScrollTrigger.update();
-    onLocoScroll(args.scroll.y);
-});
+    // Configure ScrollTrigger to use Locomotive Scroll's scroll position
+    ScrollTrigger.scrollerProxy(scrollContainer, {
+        scrollTop(value) {
+            return arguments.length
+                ? locoScroll.scrollTo(value, { duration: 0, disableLerp: true })
+                : locoScroll.scroll.instance.scroll.y;
+        },
+        getBoundingClientRect() {
+            return {
+                top: 0,
+                left: 0,
+                width: window.innerWidth,
+                height: window.innerHeight,
+            };
+        },
+        pinType: scrollContainer.style.transform ? 'transform' : 'fixed',
+    });
 
-// Refresh ScrollTrigger and Locomotive Scroll on window load/resize
-ScrollTrigger.addEventListener('refresh', () => locoScroll.update());
-ScrollTrigger.refresh();
+    // Sync: update ScrollTrigger & nav logic whenever Locomotive Scroll updates
+    locoScroll.on('scroll', (args) => {
+        ScrollTrigger.update();
+        if (typeof onLocoScroll === 'function') {
+            onLocoScroll(args.scroll.y);
+        }
+    });
 
+    // Refresh ScrollTrigger and Locomotive Scroll on window load/resize
+    ScrollTrigger.addEventListener('refresh', () => locoScroll.update());
+    ScrollTrigger.refresh();
+
+    // Hook in our extra scroll features now that locoScroll exists
+    if (typeof initScrollVelocity === 'function') initScrollVelocity();
+    if (typeof initScrollSnapping === 'function') initScrollSnapping();
+}
 // =========================================
 // END SECTION: SMOOTH SCROLL (Locomotive Scroll + GSAP)
+// =========================================
+
+// =========================================
+// START SECTION: AUTO-UPDATE OBSERVERS
+// =========================================
+window.addEventListener('load', () => {
+    setTimeout(() => {
+        if (locoScroll) locoScroll.update();
+    }, 300);
+});
+// =========================================
+// END SECTION: AUTO-UPDATE OBSERVERS
 // =========================================
 
 // =========================================
@@ -383,4 +407,131 @@ function animateHeroEntrance() {
 
 // =========================================
 // END SECTION: HERO STAGGERED ENTRANCE
+// =========================================
+
+// =========================================
+// START SECTION: SCROLL VELOCITY
+// =========================================
+function initScrollVelocity() {
+    const scrollers = document.querySelectorAll('.scroller');
+
+    if (scrollers.length > 0) {
+        let scrollVelocity = 0;
+        let targetVelocity = 0;
+        
+        // Hook into Locomotive Scroll to get real-time velocity
+        locoScroll.on('scroll', (args) => {
+            targetVelocity = args.speed || 0;
+        });
+
+        // Prepare state for each scroller
+        const scrollerData = Array.from(scrollers).map(scroller => {
+            const span = scroller.querySelector('span'); // Get one child to measure width
+            return {
+                el: scroller,
+                baseX: 0,
+                baseVelocity: parseFloat(scroller.getAttribute('data-base-velocity')) || 1,
+                directionFactor: 1,
+                getSpanWidth: () => span ? span.offsetWidth : 0 // recalculate on fly for resizes
+            };
+        });
+
+        function wrap(min, max, v) {
+            const range = max - min;
+            const mod = (((v - min) % range) + range) % range;
+            return mod + min;
+        }
+
+        let lastTime = performance.now();
+
+        function renderVelocity(time) {
+            const delta = time - lastTime;
+            lastTime = time;
+
+            // Smooth out the target velocity to prevent jitter/bouncing
+            scrollVelocity += (targetVelocity - scrollVelocity) * 0.1;
+            targetVelocity *= 0.9; // decay target so it stops if scrolling stops
+
+            const velocityFactor = scrollVelocity * 0.15; // tweak multiplier for intensity
+
+            scrollerData.forEach(data => {
+                // Apply a threshold to prevent microscopic bounces causing sudden direction flips
+                if (velocityFactor < -0.05) {
+                    data.directionFactor = -1; // scrolling up reverses direction
+                } else if (velocityFactor > 0.05) {
+                    data.directionFactor = 1;  // scrolling down goes natural direction
+                }
+
+                // Normal delta-based movement
+                let moveBy = data.directionFactor * data.baseVelocity * (delta / 16); 
+                
+                // Exact React equation:
+                moveBy += data.directionFactor * moveBy * velocityFactor;
+
+                data.baseX += moveBy;
+
+                const maxW = data.getSpanWidth();
+                if (maxW > 0) {
+                    // Seamless wrap around exactly one span minus gap length
+                    const wrappedX = wrap(-maxW, 0, data.baseX);
+                    data.baseX = wrappedX; // store wrapped value so we don't float to infinity
+                    data.el.style.transform = `translate3d(${wrappedX}px, 0, 0)`;
+                }
+            });
+
+            requestAnimationFrame(renderVelocity);
+        }
+
+        requestAnimationFrame(renderVelocity);
+    }
+}
+// =========================================
+// END SECTION: SCROLL VELOCITY
+// =========================================
+
+// =========================================
+// START SECTION: SCROLL SNAPPING
+// =========================================
+function initScrollSnapping() {
+    let snapTimeout;
+
+    locoScroll.on('scroll', (args) => {
+        clearTimeout(snapTimeout);
+        
+        // Only engage snapping if the user has essentially stopped scrolling fast
+        if (Math.abs(args.speed) > 2) return; 
+
+        // Wait slightly to make sure scroll movement has actually finished
+        snapTimeout = setTimeout(() => {
+            const currentY = args.scroll.y;
+            let closestSection = null;
+            let minDistance = Infinity;
+            
+            // How close before the magnet activates?
+            const magnetThreshold = 250;
+            
+            document.querySelectorAll('[data-snap-section]').forEach(section => {
+                // offsetTop works perfectly because Locomotive translates the container relatively
+                const targetY = section.offsetTop;
+                const distance = Math.abs(currentY - targetY);
+                
+                if (distance < magnetThreshold && distance < minDistance) {
+                    minDistance = distance;
+                    closestSection = section;
+                }
+            });
+            
+            // If we found a marked section and we're not perfectly on it already
+            if (closestSection && minDistance > 5) {
+                locoScroll.scrollTo(closestSection, {
+                    duration: 800,
+                    disableLerp: false,
+                    easing: [0.25, 0.00, 0.35, 1.00]
+                });
+            }
+        }, 150); // delay before snapping
+    });
+}
+// =========================================
+// END SECTION: SCROLL SNAPPING
 // =========================================
