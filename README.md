@@ -6,28 +6,59 @@ A sleek, modern, and highly responsive personal portfolio website built to showc
 ## 🚀 Features
 
 - **Dynamic Hero Section:** Immersive full-screen fading image layout with modern typography.
-- **Smooth Scrolling:** Integrated with [Lenis](https://lenis.studiofreight.com/) and [GSAP](https://greensock.com/gsap/) for butter-smooth momentum scrolling and scroll-trigger animations.
-- **Responsive Design:** Fully mobile-tailored containing custom touch-navigation elements, a floating action button (FAB), and responsive grids.
-- **Custom Theming:** Unique Dark Mode UI featuring stark contrasts and a premium color palette.
-- **Interactive UI:** Project filtering, animated skill bars, and interactive contact forms.
+- **Smooth Scrolling:** [Locomotive Scroll](https://github.com/locomotivemtl/locomotive-scroll) + [GSAP](https://gsap.com/) for momentum scrolling and scroll-triggered animations.
+- **Greeting Splash Navigation:** Multilingual "Hello" transition when jumping between sections.
+- **Responsive Design:** Mobile menu, floating action button (FAB), and responsive grids.
+- **Interactive UI:** Project filtering, animated skill bars, velocity-reactive marquee, and a contact form.
 
 ## 💻 Tech Stack
 
-- **HTML5 & CSS3:** Semantic architecture, custom CSS Variables, Flexbox/Grid layouts, and Keyframe animations.
-- **Vanilla JavaScript:** DOM manipulation, scroll tracking events, and UI state management.
-- **GSAP & Lenis:** Industry-standard libraries for advanced animations and momentum scrolling.
+- **Next.js (App Router) + React** — component-based UI, statically exported for GitHub Pages.
+- **CSS** — custom properties, Flexbox/Grid, keyframe animations (`app/globals.css`).
+- **GSAP & Locomotive Scroll** — animation and smooth scrolling.
+
+## 📁 Project Structure
+
+```
+app/
+  layout.jsx          # <html>, fonts, metadata, global CSS
+  page.jsx            # assembles the page from sections
+  globals.css         # all site styles
+components/
+  SiteProvider.jsx    # smooth scroll, nav state, splash transition, reveal
+  Loader.jsx  Navbar.jsx  NavSplash.jsx  SectionLink.jsx ...
+  sections/           # Hero, About, Skills, Projects, Education, ...
+lib/
+  content.js          # ✏️ all text/data — edit this to update the site
+  scrollEffects.js    # reveal, hero entrance, marquee, snapping
+assets/hero-photo.png
+```
+
+To update projects, skills, achievements or blog posts, just edit `lib/content.js`.
 
 ## 🛠️ How to Run
 
-Because this is a static website, there are no complicated build steps or dependencies!
+Requires Node.js 20.9+.
 
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/Franky1107/Portfolio.git
-   ```
-2. Open the project folder on your computer.
-3. Simply double-click on `base.html` to open it in your default web browser! 
-   *(Note: For the best development experience, open the folder in an editor like VS Code and use the **Live Server** extension).*
+```bash
+git clone https://github.com/Franky1107/Portfolio.git
+cd Portfolio
+npm install
+npm run dev        # http://localhost:3000
+```
+
+Production build (static HTML in `out/`):
+
+```bash
+npm run build
+```
+
+Builds are served under `/Portfolio` to match GitHub Pages. For a root-domain deploy, build with `BASE_PATH="" npm run build`.
+
+## 🚢 Deployment
+
+`.github/workflows/deploy.yml` builds and publishes to GitHub Pages on every push to `main`.
+In the repo go to **Settings → Pages → Source** and choose **GitHub Actions** (one-time setup).
 
 ## 📫 Contact
 
