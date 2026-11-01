@@ -57,6 +57,11 @@ Builds are served under `/Portfolio` to match GitHub Pages. For a root-domain de
 
 ## 🚢 Deployment
 
+**Vercel:** import the repo at vercel.com and set the production branch. The base path is
+detected automatically (served from `/`), no extra settings needed.
+
+**GitHub Pages:**
+
 `.github/workflows/deploy.yml` builds and publishes to GitHub Pages on every push to `main`.
 In the repo go to **Settings → Pages → Source** and choose **GitHub Actions** (one-time setup).
 
